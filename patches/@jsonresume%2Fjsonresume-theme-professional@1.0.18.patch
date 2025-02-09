@@ -1,8 +1,11 @@
+diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-d4c2275d42fc02ed b/.bun-tag-d4c2275d42fc02ed
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-fe6434c5af74f36e b/.bun-tag-fe6434c5af74f36e
 new file mode 100644
 index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/src/index.js b/src/index.js
-index 25637051d5e22a6c13c71055ab4308db810976ee..e90b6b1ddf61e8bac164544d593ced6fa4249916 100644
+index 25637051d5e22a6c13c71055ab4308db810976ee..0a3aa213531f13dd6eecceabef94cba0a4faa3ae 100644
 --- a/src/index.js
 +++ b/src/index.js
 @@ -1,15 +1,20 @@
@@ -31,7 +34,7 @@ index 25637051d5e22a6c13c71055ab4308db810976ee..e90b6b1ddf61e8bac164544d593ced6f
    <title>${resume.basics.name} - Resume</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-+  <base href="./"/>
++  <base href="./resume"/>
    <style>
      @font-face {
        font-family: LatinModern;
