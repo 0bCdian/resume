@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "theme": "professional"
+  },
+  "basics": {
+    "name": "Diego Miguel Parra Nava",
+    "label": "Software Engineer",
+    "picture": "",
+    "email": "diegoparranava@protonmail.com",
+    "phone": "(34)-665620606",
+    "url": "https://blog.diegoparra.dev/",
+    "summary": "Self-taught software engineer with 3+ years of experience. I recently pivoted towards DevOps and cloud engineering, graduated from a DevOps Bootcamp, and hold a Google Cloud Professional Cloud Architect certification.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Gijon",
+      "countryCode": "ES",
+      "region": "Spain"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "0bCdian",
+        "url": "https://github.com/0bCdian"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "diegoparranava",
+        "url": "https://www.linkedin.com/in/diegoparranava"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "Freelance Backend Engineer",
+      "position": "Backend Engineer",
+      "website": "",
+      "startDate": "2023-09",
+      "endDate": "2023-12",
+      "summary": "Transitioned backend architecture from a Flask template to Node.js with Express.js and TypeScript. Improved first-page load times by 20% and decreased login times from 5-10 seconds to 2 seconds.",
+      "highlights": [
+        "Designed a type-safe permission system for API endpoints with sensitive data.",
+        "Optimized Python scripts for data scraping, reducing execution time from 3 minutes to 45 seconds.",
+        "Designed and implemented a robust database model for Trello board metadata, streamlining data processing workflows and cutting data handling time by 50%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad del Zulia",
+      "area": "Electrical Engineering",
+      "studyType": "Unfinished Degree",
+      "startDate": "2013-02",
+      "endDate": "2017-06",
+      "gpa": "",
+      "courses": [
+        "Calculus 1 through 4",
+        "Physics 1 through 3",
+        "Programming",
+        "Linear Algebra"
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Professional Cloud Architect",
+      "date": "2025-01",
+      "issuer": "Google",
+      "url": "https://www.credly.com/badges/d55110ec-00bd-4209-b8cc-2d1b2ebfe3ab/public_url"
+    },
+    {
+      "name": "DevOps para procesos ágiles",
+      "date": "2025-01",
+      "issuer": "Boolean Academia",
+      "url": "https://boolean.cl/certs/devops-ci-cd/g04/bea09c33718bfc8133b35cfb90307446/"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming Languages",
+      "level": "",
+      "keywords": [
+        "TypeScript",
+        "JavaScript",
+        "Python",
+        "Bash",
+        "HTML",
+        "CSS"
+      ]
+    },
+    {
+      "name": "Databases",
+      "level": "",
+      "keywords": [
+        "PostgreSQL",
+        "SQLite",
+        "MongoDB",
+        "Firestore"
+      ]
+    },
+    {
+      "name": "Cloud/Infra",
+      "level": "",
+      "keywords": [
+        "GCP",
+        "GitHub Actions",
+        "Docker",
+        "Kubernetes",
+        "Terraform"
+      ]
+    },
+    {
+      "name": "Version Control",
+      "level": "",
+      "keywords": [
+        "Git",
+        "GitHub"
+      ]
+    },
+    {
+      "name": "Frameworks",
+      "level": "",
+      "keywords": [
+        "Express",
+        "Electron",
+        "Hono",
+        "Flask",
+        "React",
+        "Tailwind"
+      ]
+    },
+    {
+      "name": "Best Practices",
+      "level": "",
+      "keywords": [
+        "OOP",
+        "TDD",
+        "SOLID",
+        "REST",
+        "DDD",
+        "Hexagonal Architecture"
+      ]
+    },
+    {
+      "name": "Soft Skills",
+      "level": "",
+      "keywords": [
+        "Problem-solving",
+        "Adaptability",
+        "Team-oriented",
+        "Great communicator"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Spanish",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "C2"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Waypaper Engine",
+      "startDate": "2023-06",
+      "description": "Open-source wallpaper manager tool and setter for Linux, with external script support, custom playlists, and a fully-fledged CLI with 200+ stars on GitHub.",
+      "highlights": [
+        "Closed 20+ issues.",
+        "Added 15+ features since the first release.",
+        "Published in the Arch Linux User Repository.",
+        "Built with Electron, Nodejs, React, and Bash."
+      ],
+      "keywords": [
+        "Electron",
+        "React",
+        "Node.js",
+        "SQLite",
+        "Bash"
+      ],
+      "url": "https://github.com/0bCdian/Waypaper-Engine"
+    },
+    {
+  "name": "resumeJson",
+  "startDate": "2024-11",
+  "description": "A multi-component system for parsing resumes into JSON Resume schema with a focus on CI/CD and DevOps.",
+  "highlights": [
+    "Set up a CI/CD pipeline with GitHub Actions for Docker builds, testing, and deployments.",
+    "Automated testing with Vitest and NGINX-hosted reports stored in a GCP bucket.",
+    "Managed infrastructure using OpenTofu with automated planning and manual apply approvals.",
+    "Developed a React frontend for Google OAuth registration, API key management, and quota tracking.",
+    "Encapsulated core business logic in a shared lib package using hexagonal architecture."
+  ],
+
+      "keywords": [
+        "DevOps",
+        "GitHub Actions",
+        "OpenTofu",
+        "Docker",
+        "NGINX",
+        "Vitest",
+        "TypeScript",
+        "Hono",
+        "React"
+      ],
+      "url": "https://github.com/0bCdian/resumeJson"
+    }
+  ]
+}

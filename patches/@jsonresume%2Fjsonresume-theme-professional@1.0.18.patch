@@ -1,0 +1,971 @@
+diff --git a/src/index.js b/src/index.js
+index 25637051d5e22a6c13c71055ab4308db810976ee..8e3bddc84505b6ea0c3ed3c2bf41b5305fcd38ca 100644
+--- a/src/index.js
++++ b/src/index.js
+@@ -1,12 +1,16 @@
+-import { renderToString } from 'react-dom/server';
+-import { ServerStyleSheet } from 'styled-components';
+-import Resume from './ui/Resume';
+-
+-export const render = (resume) => {
+-  const sheet = new ServerStyleSheet();
+-  const html = renderToString(sheet.collectStyles(<Resume resume={resume} />));
+-  const styles = sheet.getStyleTags();
+-  return `<!DOCTYPE html><head>
++import { renderToString } from "react-dom/server";
++import { ServerStyleSheet } from "styled-components";
++import Resume from "./ui/Resume";
++
++export const render = (resume, componentsOrder) => {
++	const sheet = new ServerStyleSheet();
++	const html = renderToString(
++		sheet.collectStyles(
++			<Resume resume={resume} componentOrder={componentsOrder} />,
++		),
++	);
++	const styles = sheet.getStyleTags();
++	return `<!DOCTYPE html><head>
+   <title>${resume.basics.name} - Resume</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+diff --git a/src/ui/Awards.js b/src/ui/Awards.js
+index cee2463fe103fd5b06d59d3a1ebe40a9d75ce613..c32d5a318c8bd794113536ba812b33e05243698c 100644
+--- a/src/ui/Awards.js
++++ b/src/ui/Awards.js
+@@ -1,28 +1,29 @@
+-import Section from './Section';
+-import Experience from './Experience';
++import Section from "./Section";
++import Experience from "./Experience";
+ 
+-const Awards = ({ awards }) => {
+-  if (!awards) {
+-    return null;
+-  }
++const Awards = ({ resume }) => {
++	const { awards } = resume;
++	if (!awards) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="Awards">
+-        {awards.map((a, key) => {
+-          return (
+-            <Experience
+-              title={a.title}
+-              subTitle={a.awarder}
+-              date={a.date}
+-              summary={a.summary}
+-              key={key}
+-            />
+-          );
+-        })}
+-      </Section>
+-    </div>
+-  );
++	return (
++		<div>
++			<Section title="Awards">
++				{awards.map((a, key) => {
++					return (
++						<Experience
++							title={a.title}
++							subTitle={a.awarder}
++							date={a.date}
++							summary={a.summary}
++							key={key}
++						/>
++					);
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+ export default Awards;
+diff --git a/src/ui/Certificates.js b/src/ui/Certificates.js
+index fe13413204be603ba6989e4bcce84255fdb4ced0..ab7527b0cf82d2da67393e052e97b6241322db0d 100644
+--- a/src/ui/Certificates.js
++++ b/src/ui/Certificates.js
+@@ -1,27 +1,28 @@
+-import Section from './Section';
+-import Experience from './Experience';
++import Section from "./Section";
++import Experience from "./Experience";
+ 
+-const Certificates = ({ certificates }) => {
+-  if (!certificates) {
+-    return null;
+-  }
++const Certificates = ({ resume }) => {
++	const { certificates } = resume;
++	if (!certificates) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="Certificates">
+-        {certificates.map((c, key) => {
+-          return (
+-            <Experience
+-              title={c.name}
+-              subTitle={c.issuer}
+-              date={c.date}
+-              key={key}
+-            />
+-          );
+-        })}
+-      </Section>
+-    </div>
+-  );
++	return (
++		<div>
++			<Section title="Certificates">
++				{certificates.map((c, key) => {
++					return (
++						<Experience
++							title={c.name}
++							subTitle={c.issuer}
++							date={c.date}
++							key={key}
++						/>
++					);
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+ export default Certificates;
+diff --git a/src/ui/Education.js b/src/ui/Education.js
+index 3c06212ec329be2448c2582f16d783b9225e91bd..ad5b067d83ea7fa21418a83954c3cce025f6dd55 100644
+--- a/src/ui/Education.js
++++ b/src/ui/Education.js
+@@ -1,35 +1,36 @@
+-import Section from './Section';
+-import Experience from './Experience';
++import Section from "./Section";
++import Experience from "./Experience";
+ 
+-const Education = ({ education }) => {
+-  if (!education) {
+-    return null;
+-  }
++const Education = ({ resume }) => {
++	const { education } = resume;
++	if (!education) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="Education">
+-        {education.map((e, key) => {
+-          let subTitle = e.area ? `${e.studyType} in ${e.area}` : e.studyType;
++	return (
++		<div>
++			<Section title="Education">
++				{education.map((e, key) => {
++					let subTitle = e.area ? `${e.studyType} in ${e.area}` : e.studyType;
+ 
+-          if (e.score) {
+-            subTitle = `${subTitle} (${e.score})`;
+-          }
++					if (e.score) {
++						subTitle = `${subTitle} (${e.score})`;
++					}
+ 
+-          return (
+-            <Experience
+-              title={e.institution}
+-              subTitle={subTitle}
+-              startDate={e.startDate}
+-              endDate={e.endDate}
+-              highlights={e.courses}
+-              key={key}
+-            />
+-          );
+-        })}
+-      </Section>
+-    </div>
+-  );
++					return (
++						<Experience
++							title={e.institution}
++							subTitle={subTitle}
++							startDate={e.startDate}
++							endDate={e.endDate}
++							highlights={e.courses}
++							key={key}
++						/>
++					);
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+ export default Education;
+diff --git a/src/ui/Hero.js b/src/ui/Hero.js
+index 7fbe599886a67ae677a386c198388d6cc1918f03..68704d9cb76be0dae3dac5646cc3c09bce64b66d 100644
+--- a/src/ui/Hero.js
++++ b/src/ui/Hero.js
+@@ -1,14 +1,14 @@
+-import styled from 'styled-components';
++import styled from "styled-components";
+ import {
+-  FaMapPin,
+-  FaEnvelope,
+-  FaGithub,
+-  FaTwitter,
+-  FaPhoneAlt,
+-  FaLink,
+-  FaLinkedin,
+-} from 'react-icons/fa';
+-import Section from './Section';
++	FaMapPin,
++	FaEnvelope,
++	FaGithub,
++	FaTwitter,
++	FaPhoneAlt,
++	FaLink,
++	FaLinkedin,
++} from "react-icons/fa";
++import Section from "./Section";
+ 
+ const Title = styled.div`
+   font-size: 3rem;
+@@ -43,78 +43,78 @@ const Info = styled.div`
+   }
+ `;
+ 
+-const HeroComponent = ({ basics }) => {
+-  const { name, url, location, profiles, phone, email } = basics;
++const HeroComponent = ({ resume }) => {
++	const { name, url, location, profiles, phone, email } = resume.basics;
+ 
+-  const linkedin = profiles.find(
+-    ({ network }) => network.toLowerCase() === 'linkedin'
+-  );
+-  const github = profiles.find(
+-    ({ network }) => network.toLowerCase() === 'github'
+-  );
+-  const twitter = profiles.find(
+-    ({ network }) => network.toLowerCase() === 'twitter'
+-  );
++	const linkedin = profiles.find(
++		({ network }) => network.toLowerCase() === "linkedin",
++	);
++	const github = profiles.find(
++		({ network }) => network.toLowerCase() === "github",
++	);
++	const twitter = profiles.find(
++		({ network }) => network.toLowerCase() === "twitter",
++	);
+ 
+-  return (
+-    <Section>
+-      <Title>{name}</Title>
+-      <div className="secondary">
+-        <BasicInfo>
+-          {location && (
+-            <Info>
+-              <FaMapPin />
+-              {location.city}, {location.countryCode}
+-            </Info>
+-          )}
+-          {email && (
+-            <Info>
+-              <FaEnvelope />
+-              {email}
+-            </Info>
+-          )}
+-          {phone && (
+-            <Info>
+-              <FaPhoneAlt />
+-              {phone}
+-            </Info>
+-          )}
+-          {url && (
+-            <Info>
+-              <FaLink />
+-              <a target="_blank" href={url}>
+-                {url}
+-              </a>
+-            </Info>
+-          )}
+-          {linkedin && (
+-            <Info>
+-              <FaLinkedin />
+-              <a href={`https://linkedin.com/in/${linkedin.username}`}>
+-                {linkedin.username}
+-              </a>
+-            </Info>
+-          )}
+-          {github && (
+-            <Info>
+-              <FaGithub />
+-              <a href={`https://github.com/${github.username}`}>
+-                {github.username}
+-              </a>
+-            </Info>
+-          )}
+-          {twitter && (
+-            <Info>
+-              <FaTwitter />
+-              <a href={`https://twitter.com/${twitter.username}`}>
+-                {twitter.username}
+-              </a>
+-            </Info>
+-          )}
+-        </BasicInfo>
+-      </div>
+-    </Section>
+-  );
++	return (
++		<Section>
++			<Title>{name}</Title>
++			<div className="secondary">
++				<BasicInfo>
++					{location && (
++						<Info>
++							<FaMapPin />
++							{location.city}, {location.countryCode}
++						</Info>
++					)}
++					{email && (
++						<Info>
++							<FaEnvelope />
++							{email}
++						</Info>
++					)}
++					{phone && (
++						<Info>
++							<FaPhoneAlt />
++							{phone}
++						</Info>
++					)}
++					{url && (
++						<Info>
++							<FaLink />
++							<a target="_blank" href={url}>
++								{url}
++							</a>
++						</Info>
++					)}
++					{linkedin && (
++						<Info>
++							<FaLinkedin />
++							<a href={`https://linkedin.com/in/${linkedin.username}`}>
++								{linkedin.username}
++							</a>
++						</Info>
++					)}
++					{github && (
++						<Info>
++							<FaGithub />
++							<a href={`https://github.com/${github.username}`}>
++								{github.username}
++							</a>
++						</Info>
++					)}
++					{twitter && (
++						<Info>
++							<FaTwitter />
++							<a href={`https://twitter.com/${twitter.username}`}>
++								{twitter.username}
++							</a>
++						</Info>
++					)}
++				</BasicInfo>
++			</div>
++		</Section>
++	);
+ };
+ 
+ export default HeroComponent;
+diff --git a/src/ui/Interests.js b/src/ui/Interests.js
+index 8cfbcef6e5ee435c5700b53a087cdcb638308c67..ba582d70854d66a72108c2ae0cf1958a73e46c0c 100644
+--- a/src/ui/Interests.js
++++ b/src/ui/Interests.js
+@@ -1,22 +1,23 @@
+-import OneLineList from './OneLineList';
+-import Section from './Section';
++import OneLineList from "./OneLineList";
++import Section from "./Section";
+ 
+-const Interests = ({ interests }) => {
+-  // check if interests is null, empty, empty string or empty array
++const Interests = ({ resume }) => {
++	const { interests } = resume;
++	// check if interests is null, empty, empty string or empty array
+ 
+-  if (!interests) {
+-    return null;
+-  }
++	if (!interests) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="Interests">
+-        {interests.map((w, key) => {
+-          return <OneLineList key={key} name={w.name} items={w.keywords} />;
+-        })}
+-      </Section>
+-    </div>
+-  );
++	return (
++		<div>
++			<Section title="Interests">
++				{interests.map((w, key) => {
++					return <OneLineList key={key} name={w.name} items={w.keywords} />;
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+ export default Interests;
+diff --git a/src/ui/Languages.js b/src/ui/Languages.js
+index c5ed4aab0fb50e5a161b4af1cabddea7a2985148..b06be94be6edff9fccadde11beb9562f8f71d613 100644
+--- a/src/ui/Languages.js
++++ b/src/ui/Languages.js
+@@ -1,23 +1,24 @@
+-import OneLineList from './OneLineList';
++import OneLineList from "./OneLineList";
+ 
+-import Section from './Section';
++import Section from "./Section";
+ 
+-const Languages = ({ languages }) => {
+-  if (!languages) {
+-    return null;
+-  }
++const Languages = ({ resume }) => {
++	const { languages } = resume;
++	if (!languages) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="Languages">
+-        {languages.map((l, key) => {
+-          return (
+-            <OneLineList key={key} name={l.language} items={[l.fluency]} />
+-          );
+-        })}
+-      </Section>
+-    </div>
+-  );
++	return (
++		<div>
++			<Section title="Languages">
++				{languages.map((l, key) => {
++					return (
++						<OneLineList key={key} name={l.language} items={[l.fluency]} />
++					);
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+ export default Languages;
+diff --git a/src/ui/OneLineList.js b/src/ui/OneLineList.js
+index d4668ce96dfbd0ef647aaabd59cfc547ab2af876..21d39707e92aed18b4d895232f1186bddc4cf5bb 100644
+--- a/src/ui/OneLineList.js
++++ b/src/ui/OneLineList.js
+@@ -1,4 +1,4 @@
+-import styled from 'styled-components';
++import styled from "styled-components";
+ 
+ const Name = styled.div`
+   font-weight: 600;
+@@ -17,14 +17,14 @@ const Container = styled.div`
+ `;
+ 
+ const OneLineList = ({ name, items }) => {
+-  return (
+-    <Container>
+-      <Name>{name}:</Name>
+-      <List>
+-        <div class="secondary">{items?.join(', ')}</div>
+-      </List>
+-    </Container>
+-  );
++	return (
++		<Container>
++			<Name>{name}:</Name>
++			<List>
++				<div className="secondary">{items?.join(", ")}</div>
++			</List>
++		</Container>
++	);
+ };
+ 
+ export default OneLineList;
+diff --git a/src/ui/Projects.js b/src/ui/Projects.js
+index 70fae08d18b6f1f6774b449889d78e98462fc6b1..37b1f013cd1f7660cc645e8b553e7490673a3873 100644
+--- a/src/ui/Projects.js
++++ b/src/ui/Projects.js
+@@ -1,29 +1,30 @@
+-import Section from './Section';
+-import Experience from './Experience';
++import Section from "./Section";
++import Experience from "./Experience";
+ 
+-const Work = ({ projects }) => {
+-  if (!projects) {
+-    return null;
+-  }
++const Projects = ({ resume }) => {
++	const { projects } = resume;
++	if (!projects) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="Projects">
+-        {projects.map((w, key) => {
+-          return (
+-            <Experience
+-              title={w.name}
+-              startDate={w.startDate}
+-              endDate={w.endDate}
+-              summary={w.description}
+-              highlights={w.highlights}
+-              key={key}
+-            />
+-          );
+-        })}
+-      </Section>
+-    </div>
+-  );
++	return (
++		<div>
++			<Section title="Projects">
++				{projects.map((w, key) => {
++					return (
++						<Experience
++							title={w.name}
++							startDate={w.startDate}
++							endDate={w.endDate}
++							summary={w.description}
++							highlights={w.highlights}
++							key={key}
++						/>
++					);
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+-export default Work;
++export default Projects;
+diff --git a/src/ui/Publications.js b/src/ui/Publications.js
+index de00d3e146b4f658b318acb44688e60c68e15c71..9c200ba09dbf722bafdc50750f3345726f7b40bf 100644
+--- a/src/ui/Publications.js
++++ b/src/ui/Publications.js
+@@ -1,28 +1,29 @@
+-import Section from './Section';
+-import Experience from './Experience';
++import Section from "./Section";
++import Experience from "./Experience";
+ 
+-const Publications = ({ publications }) => {
+-  if (!publications) {
+-    return null;
+-  }
++const Publications = ({ resume }) => {
++	const { publications } = resume;
++	if (!publications) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="Publications">
+-        {publications.map((p, key) => {
+-          return (
+-            <Experience
+-              title={p.name}
+-              subTitle={p.publisher}
+-              date={p.releaseDate}
+-              summary={p.summary}
+-              key={key}
+-            />
+-          );
+-        })}
+-      </Section>
+-    </div>
+-  );
++	return (
++		<div>
++			<Section title="Publications">
++				{publications.map((p, key) => {
++					return (
++						<Experience
++							title={p.name}
++							subTitle={p.publisher}
++							date={p.releaseDate}
++							summary={p.summary}
++							key={key}
++						/>
++					);
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+ export default Publications;
+diff --git a/src/ui/References.js b/src/ui/References.js
+index f9106dfcfeb60762c18cd9af1ca01d3b2a72d097..8d58dee14f6fc90404851db1bde1c54fa21bd213 100644
+--- a/src/ui/References.js
++++ b/src/ui/References.js
+@@ -1,5 +1,5 @@
+-import styled from 'styled-components';
+-import Section from './Section';
++import styled from "styled-components";
++import Section from "./Section";
+ 
+ const Name = styled.div`
+   font-weight: 600;
+@@ -9,25 +9,26 @@ const Name = styled.div`
+ 
+ const Reference = styled.p``;
+ 
+-const References = ({ references }) => {
+-  if (!references) {
+-    return null;
+-  }
++const References = ({ resume }) => {
++	const { references } = resume;
++	if (!references) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="References">
+-        {references.map((r, key) => {
+-          return (
+-            <div key={key} style={{ marginBottom: '15px' }}>
+-              <Name>{r.name}</Name>
+-              <Reference>{r.reference}</Reference>
+-            </div>
+-          );
+-        })}
+-      </Section>
+-    </div>
+-  );
++	return (
++		<div>
++			<Section title="References">
++				{references.map((r, key) => {
++					return (
++						<div key={key} style={{ marginBottom: "15px" }}>
++							<Name>{r.name}</Name>
++							<Reference>{r.reference}</Reference>
++						</div>
++					);
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+ export default References;
+diff --git a/src/ui/Resume.js b/src/ui/Resume.js
+index 0d5ff0546aaf690361bd6e8b3fff673eb79bddba..708b6377f727b0dc4dd6fa3dd48f7232234540f9 100644
+--- a/src/ui/Resume.js
++++ b/src/ui/Resume.js
+@@ -1,17 +1,17 @@
+-import styled from 'styled-components';
+-import Projects from './Projects';
+-import Hero from './Hero';
+-import Summary from './Summary';
+-import Education from './Education';
+-import Work from './Work';
+-import Certificates from './Certificates';
+-import Publications from './Publications';
+-import Awards from './Awards';
+-import Skills from './Skills';
+-import Interests from './Interests';
+-import Languages from './Languages';
+-import References from './References';
+-import Volunteer from './Volunteer';
++import styled from "styled-components";
++import Projects from "./Projects";
++import Hero from "./Hero";
++import Summary from "./Summary";
++import Education from "./Education";
++import Work from "./Work";
++import Certificates from "./Certificates";
++import Publications from "./Publications";
++import Awards from "./Awards";
++import Skills from "./Skills";
++import Interests from "./Interests";
++import Languages from "./Languages";
++import References from "./References";
++import Volunteer from "./Volunteer";
+ 
+ const Layout = styled.div`
+   max-width: 660px;
+@@ -19,25 +19,32 @@ const Layout = styled.div`
+   line-height: calc(1ex / 0.32);
+   margin-bottom: 40px;
+ `;
++const COMPONENTS = {
++	Hero,
++	Summary,
++	Work,
++	Projects,
++	Volunteer,
++	Education,
++	Certificates,
++	Education,
++	Publications,
++	Awards,
++	Languages,
++	Skills,
++	Interests,
++	References,
++};
+ 
+-const Resume = ({ resume }) => {
+-  return (
+-    <Layout>
+-      <Hero basics={resume.basics} />
+-      <Summary basics={resume.basics} />
+-      <Education education={resume.education} />
+-      <Work work={resume.work} />
+-      <Projects projects={resume.projects} />
+-      <Volunteer volunteer={resume.volunteer} />
+-      <Certificates certificates={resume.certificates} />
+-      <Publications publications={resume.publications} />
+-      <Awards awards={resume.awards} />
+-      <Languages languages={resume.languages} />
+-      <Skills skills={resume.skills} />
+-      <Interests interests={resume.interests} />
+-      <References references={resume.references} />
+-    </Layout>
+-  );
++const Resume = ({ resume, componentOrder }) => {
++	return (
++		<Layout>
++			{componentOrder.map((component, index) => {
++				const Component = COMPONENTS[component];
++				return <Component resume={resume} key={index} />;
++			})}
++		</Layout>
++	);
+ };
+ 
+ export default Resume;
+diff --git a/src/ui/Skills.js b/src/ui/Skills.js
+index 65c40eca800f2dd8b7d8046923d6fcc91eead81b..f6226d8018e925d5e17d8394f63b932f6b45291a 100644
+--- a/src/ui/Skills.js
++++ b/src/ui/Skills.js
+@@ -1,21 +1,22 @@
+-import OneLineList from './OneLineList';
++import OneLineList from "./OneLineList";
+ 
+-import Section from './Section';
++import Section from "./Section";
+ 
+-const Skills = ({ skills }) => {
+-  if (!skills) {
+-    return null;
+-  }
++const Skills = ({ resume }) => {
++	const { skills } = resume;
++	if (!skills) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="Skills">
+-        {skills.map((w, key) => {
+-          return <OneLineList key={key} name={w.name} items={w.keywords} />;
+-        })}
+-      </Section>
+-    </div>
+-  );
++	return (
++		<div>
++			<Section title="Skills">
++				{skills.map((w, key) => {
++					return <OneLineList key={key} name={w.name} items={w.keywords} />;
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+ export default Skills;
+diff --git a/src/ui/Summary.js b/src/ui/Summary.js
+index 74175079fb78fd7c3dd8630cc34a3874e5f8e5b9..eae226f9f2e43e952ed149c57acb0169d6393be6 100644
+--- a/src/ui/Summary.js
++++ b/src/ui/Summary.js
+@@ -1,17 +1,18 @@
+-import styled from 'styled-components';
+-import Section from './Section';
++import styled from "styled-components";
++import Section from "./Section";
+ 
+ const Summary = styled.p``;
+ 
+-const SummaryComponent = ({ basics }) => {
+-  const { summary } = basics;
+-  return (
+-    <Section>
+-      <div className="secondary">
+-        <Summary>{summary}</Summary>
+-      </div>
+-    </Section>
+-  );
++const SummaryComponent = ({ resume }) => {
++	const { basics } = resume;
++	const { summary } = basics;
++	return (
++		<Section>
++			<div className="secondary">
++				<Summary>{summary}</Summary>
++			</div>
++		</Section>
++	);
+ };
+ 
+ export default SummaryComponent;
+diff --git a/src/ui/Volunteer.js b/src/ui/Volunteer.js
+index 81d6867e05cf0610465439c9cfec6fd55bb05e56..7ce4cc27edbe7e6d6d000f43c59f6c62e13f1230 100644
+--- a/src/ui/Volunteer.js
++++ b/src/ui/Volunteer.js
+@@ -1,30 +1,31 @@
+-import Section from './Section';
+-import Experience from './Experience';
++import Section from "./Section";
++import Experience from "./Experience";
+ 
+-const Volunteer = ({ volunteer }) => {
+-  if (!volunteer) {
+-    return null;
+-  }
++const Volunteer = ({ resume }) => {
++	const { volunteer } = resume;
++	if (!volunteer) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="Volunteer">
+-        {volunteer.map((w, key) => {
+-          return (
+-            <Experience
+-              title={w.position}
+-              subTitle={w.organization}
+-              startDate={w.startDate}
+-              endDate={w.endDate}
+-              summary={w.summary}
+-              highlights={w.highlights}
+-              key={key}
+-            />
+-          );
+-        })}
+-      </Section>
+-    </div>
+-  );
++	return (
++		<div>
++			<Section title="Volunteer">
++				{volunteer.map((w, key) => {
++					return (
++						<Experience
++							title={w.position}
++							subTitle={w.organization}
++							startDate={w.startDate}
++							endDate={w.endDate}
++							summary={w.summary}
++							highlights={w.highlights}
++							key={key}
++						/>
++					);
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+ export default Volunteer;
+diff --git a/src/ui/Work.js b/src/ui/Work.js
+index 1c2659eed1d1bf98682eb27798bf2e417fd8b742..f3669969e17b4ed7a89d4a189d8c19913ae6cd64 100644
+--- a/src/ui/Work.js
++++ b/src/ui/Work.js
+@@ -1,30 +1,31 @@
+-import Section from './Section';
+-import Experience from './Experience';
++import Section from "./Section";
++import Experience from "./Experience";
+ 
+-const Work = ({ work }) => {
+-  if (!work) {
+-    return null;
+-  }
++const Work = ({ resume }) => {
++	const { work } = resume;
++	if (!work) {
++		return null;
++	}
+ 
+-  return (
+-    <div>
+-      <Section title="Experience">
+-        {work.map((w, key) => {
+-          return (
+-            <Experience
+-              title={w.position}
+-              subTitle={w.name}
+-              startDate={w.startDate}
+-              endDate={w.endDate}
+-              summary={w.summary}
+-              highlights={w.highlights}
+-              key={key}
+-            />
+-          );
+-        })}
+-      </Section>
+-    </div>
+-  );
++	return (
++		<div>
++			<Section title="Experience">
++				{work.map((w, key) => {
++					return (
++						<Experience
++							title={w.position}
++							subTitle={w.name}
++							startDate={w.startDate}
++							endDate={w.endDate}
++							summary={w.summary}
++							highlights={w.highlights}
++							key={key}
++						/>
++					);
++				})}
++			</Section>
++		</div>
++	);
+ };
+ 
+ export default Work;
