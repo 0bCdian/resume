@@ -1,3 +1,6 @@
+diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-b1893a07a77aadef b/.bun-tag-b1893a07a77aadef
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-d4c2275d42fc02ed b/.bun-tag-d4c2275d42fc02ed
 new file mode 100644
 index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
@@ -5,10 +8,10 @@ diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-fe6
 new file mode 100644
 index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/src/index.js b/src/index.js
-index 25637051d5e22a6c13c71055ab4308db810976ee..0a3aa213531f13dd6eecceabef94cba0a4faa3ae 100644
+index 25637051d5e22a6c13c71055ab4308db810976ee..501f19337f6923a07e397c68cd6655b587bbfb88 100644
 --- a/src/index.js
 +++ b/src/index.js
-@@ -1,15 +1,20 @@
+@@ -1,12 +1,16 @@
 -import { renderToString } from 'react-dom/server';
 -import { ServerStyleSheet } from 'styled-components';
 -import Resume from './ui/Resume';
@@ -34,10 +37,51 @@ index 25637051d5e22a6c13c71055ab4308db810976ee..0a3aa213531f13dd6eecceabef94cba0
    <title>${resume.basics.name} - Resume</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-+  <base href="./resume"/>
-   <style>
+@@ -15,38 +19,38 @@ export const render = (resume) => {
+       font-family: LatinModern;
+       font-style: normal;
+       font-weight: normal;
+-      src: url("/fonts/lmroman10-regular.otf") format("opentype");
++      src: url("./fonts/lmroman10-regular.otf") format("opentype");
+     }
+ 
      @font-face {
        font-family: LatinModern;
+       font-weight: bold;
+-      src: url("/fonts/lmroman10-bold.otf") format("opentype");
++      src: url("./fonts/lmroman10-bold.otf") format("opentype");
+     }
+ 
+     @font-face {
+       font-family: LatinModern;
+       font-style: italic;
+-      src: url("/fonts/lmroman10-italic.otf") format("opentype");
++      src: url("./fonts/lmroman10-italic.otf") format("opentype");
+     }
+ 
+      @font-face {
+       font-family: LatinModernSans;
+       font-style: normal;
+       font-weight: normal;
+-      src: url("/fonts/lmsans10-regular.otf") format("opentype");
++      src: url("./fonts/lmsans10-regular.otf") format("opentype");
+     }
+ 
+     @font-face {
+       font-family: LatinModernSans;
+       font-weight: bold;
+-      src: url("/fonts/lmsans10-bold.otf") format("opentype");
++      src: url("./fonts/lmsans10-bold.otf") format("opentype");
+     }
+ 
+     @font-face {
+       font-family: LatinModernSans;
+       font-style: italic;
+-      src: url("/fonts/lmsans10-italic.otf") format("opentype");
++      src: url("./fonts/lmsans10-italic.otf") format("opentype");
+     }
+ 
+     html {
 diff --git a/src/ui/Awards.js b/src/ui/Awards.js
 index cee2463fe103fd5b06d59d3a1ebe40a9d75ce613..c32d5a318c8bd794113536ba812b33e05243698c 100644
 --- a/src/ui/Awards.js
