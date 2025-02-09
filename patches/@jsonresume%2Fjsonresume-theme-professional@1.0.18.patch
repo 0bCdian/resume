@@ -1,8 +1,11 @@
+diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-fe6434c5af74f36e b/.bun-tag-fe6434c5af74f36e
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/src/index.js b/src/index.js
-index 25637051d5e22a6c13c71055ab4308db810976ee..8e3bddc84505b6ea0c3ed3c2bf41b5305fcd38ca 100644
+index 25637051d5e22a6c13c71055ab4308db810976ee..e90b6b1ddf61e8bac164544d593ced6fa4249916 100644
 --- a/src/index.js
 +++ b/src/index.js
-@@ -1,12 +1,16 @@
+@@ -1,15 +1,20 @@
 -import { renderToString } from 'react-dom/server';
 -import { ServerStyleSheet } from 'styled-components';
 -import Resume from './ui/Resume';
@@ -28,6 +31,10 @@ index 25637051d5e22a6c13c71055ab4308db810976ee..8e3bddc84505b6ea0c3ed3c2bf41b530
    <title>${resume.basics.name} - Resume</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1"/>
++  <base href="./"/>
+   <style>
+     @font-face {
+       font-family: LatinModern;
 diff --git a/src/ui/Awards.js b/src/ui/Awards.js
 index cee2463fe103fd5b06d59d3a1ebe40a9d75ce613..c32d5a318c8bd794113536ba812b33e05243698c 100644
 --- a/src/ui/Awards.js
