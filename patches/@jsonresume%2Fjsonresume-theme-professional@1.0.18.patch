@@ -1,3 +1,6 @@
+diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-8bd05a48f175ec0d b/.bun-tag-8bd05a48f175ec0d
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-b1893a07a77aadef b/.bun-tag-b1893a07a77aadef
 new file mode 100644
 index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
@@ -8,36 +11,30 @@ diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-fe6
 new file mode 100644
 index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/src/index.js b/src/index.js
-index 25637051d5e22a6c13c71055ab4308db810976ee..501f19337f6923a07e397c68cd6655b587bbfb88 100644
+index 25637051d5e22a6c13c71055ab4308db810976ee..eb56e32b2e2d8fa98a3aa13308791a1974908bcb 100644
 --- a/src/index.js
 +++ b/src/index.js
-@@ -1,12 +1,16 @@
+@@ -1,10 +1,14 @@
 -import { renderToString } from 'react-dom/server';
 -import { ServerStyleSheet } from 'styled-components';
 -import Resume from './ui/Resume';
--
--export const render = (resume) => {
--  const sheet = new ServerStyleSheet();
--  const html = renderToString(sheet.collectStyles(<Resume resume={resume} />));
--  const styles = sheet.getStyleTags();
--  return `<!DOCTYPE html><head>
 +import { renderToString } from "react-dom/server";
 +import { ServerStyleSheet } from "styled-components";
 +import Resume from "./ui/Resume";
-+
+ 
+-export const render = (resume) => {
 +export const render = (resume, componentsOrder) => {
-+	const sheet = new ServerStyleSheet();
-+	const html = renderToString(
-+		sheet.collectStyles(
-+			<Resume resume={resume} componentOrder={componentsOrder} />,
-+		),
-+	);
-+	const styles = sheet.getStyleTags();
-+	return `<!DOCTYPE html><head>
+   const sheet = new ServerStyleSheet();
+-  const html = renderToString(sheet.collectStyles(<Resume resume={resume} />));
++  const html = renderToString(
++    sheet.collectStyles(
++      <Resume resume={resume} componentOrder={componentsOrder} />,
++    ),
++  );
+   const styles = sheet.getStyleTags();
+   return `<!DOCTYPE html><head>
    <title>${resume.basics.name} - Resume</title>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-@@ -15,38 +19,38 @@ export const render = (resume) => {
+@@ -15,44 +19,45 @@ export const render = (resume) => {
        font-family: LatinModern;
        font-style: normal;
        font-weight: normal;
@@ -82,6 +79,13 @@ index 25637051d5e22a6c13c71055ab4308db810976ee..501f19337f6923a07e397c68cd6655b5
      }
  
      html {
+       font-family:LatinModern, "Courier New", monospace;
+       background: #fff;
+       font-size: 10px;
++      font-weight:400;
+     }
+ 
+     h2 {
 diff --git a/src/ui/Awards.js b/src/ui/Awards.js
 index cee2463fe103fd5b06d59d3a1ebe40a9d75ce613..c32d5a318c8bd794113536ba812b33e05243698c 100644
 --- a/src/ui/Awards.js
@@ -739,10 +743,10 @@ index f9106dfcfeb60762c18cd9af1ca01d3b2a72d097..8d58dee14f6fc90404851db1bde1c54f
  
  export default References;
 diff --git a/src/ui/Resume.js b/src/ui/Resume.js
-index 0d5ff0546aaf690361bd6e8b3fff673eb79bddba..708b6377f727b0dc4dd6fa3dd48f7232234540f9 100644
+index 0d5ff0546aaf690361bd6e8b3fff673eb79bddba..aea6d6ed8148c94130f5488fdb1889691ed26ad0 100644
 --- a/src/ui/Resume.js
 +++ b/src/ui/Resume.js
-@@ -1,17 +1,17 @@
+@@ -1,41 +1,48 @@
 -import styled from 'styled-components';
 -import Projects from './Projects';
 -import Hero from './Hero';
@@ -773,31 +777,33 @@ index 0d5ff0546aaf690361bd6e8b3fff673eb79bddba..708b6377f727b0dc4dd6fa3dd48f7232
 +import Volunteer from "./Volunteer";
  
  const Layout = styled.div`
-   max-width: 660px;
-@@ -19,25 +19,32 @@ const Layout = styled.div`
+-  max-width: 660px;
++  max-width: 1920px;
+   margin: 0 auto;
    line-height: calc(1ex / 0.32);
    margin-bottom: 40px;
  `;
 +const COMPONENTS = {
-+	Hero,
-+	Summary,
-+	Work,
-+	Projects,
-+	Volunteer,
-+	Education,
-+	Certificates,
-+	Education,
-+	Publications,
-+	Awards,
-+	Languages,
-+	Skills,
-+	Interests,
-+	References,
++  Hero,
++  Summary,
++  Work,
++  Projects,
++  Volunteer,
++  Education,
++  Certificates,
++  Education,
++  Publications,
++  Awards,
++  Languages,
++  Skills,
++  Interests,
++  References,
 +};
  
 -const Resume = ({ resume }) => {
--  return (
--    <Layout>
++const Resume = ({ resume, componentOrder }) => {
+   return (
+     <Layout>
 -      <Hero basics={resume.basics} />
 -      <Summary basics={resume.basics} />
 -      <Education education={resume.education} />
@@ -811,20 +817,26 @@ index 0d5ff0546aaf690361bd6e8b3fff673eb79bddba..708b6377f727b0dc4dd6fa3dd48f7232
 -      <Skills skills={resume.skills} />
 -      <Interests interests={resume.interests} />
 -      <References references={resume.references} />
--    </Layout>
--  );
-+const Resume = ({ resume, componentOrder }) => {
-+	return (
-+		<Layout>
-+			{componentOrder.map((component, index) => {
-+				const Component = COMPONENTS[component];
-+				return <Component resume={resume} key={index} />;
-+			})}
-+		</Layout>
-+	);
++      {componentOrder.map((component, index) => {
++        const Component = COMPONENTS[component];
++        return <Component resume={resume} key={index} />;
++      })}
+     </Layout>
+   );
  };
+diff --git a/src/ui/Section.js b/src/ui/Section.js
+index 52981db67efec1552c08af85db3d6fcf7474ebe3..0e34ba441ae3aeb6672e04d4673327e8d914a560 100644
+--- a/src/ui/Section.js
++++ b/src/ui/Section.js
+@@ -1,7 +1,7 @@
+ import styled from 'styled-components';
  
- export default Resume;
+ const Section = styled.div`
+-  max-width: 700px;
++  max-width: 780px;
+   margin: 0 auto 18px;
+ 
+   h2 {
 diff --git a/src/ui/Skills.js b/src/ui/Skills.js
 index 65c40eca800f2dd8b7d8046923d6fcc91eead81b..f6226d8018e925d5e17d8394f63b932f6b45291a 100644
 --- a/src/ui/Skills.js

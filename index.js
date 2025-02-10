@@ -2,30 +2,29 @@ import { render } from "@jsonresume/jsonresume-theme-professional";
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
 async function renderJson() {
-	const componentsOrder = [
-		"Hero",
-		"Summary",
-		"Work",
-		"Projects",
-		"Volunteer",
-		"Education",
-		"Certificates",
-		"Education",
-		"Publications",
-		"Awards",
-		"Languages",
-		"Skills",
-		"Interests",
-		"References",
-	];
-	const jsonText = await Bun.file("./resume.json").text();
-	const resumeJson = await JSON.parse(jsonText);
-	return render(resumeJson, componentsOrder);
+  const componentsOrder = [
+    "Hero",
+    "Summary",
+    "Work",
+    "Projects",
+    "Volunteer",
+    "Certificates",
+    "Education",
+    "Publications",
+    "Awards",
+    "Languages",
+    "Skills",
+    "Interests",
+    "References",
+  ];
+  const jsonText = await Bun.file("./resume.json").text();
+  const resumeJson = await JSON.parse(jsonText);
+  return render(resumeJson, componentsOrder);
 }
 const app = new Hono();
 app.get("/", async (c) => {
-	const html = await renderJson();
-	return c.html(html);
+  const html = await renderJson();
+  return c.html(html);
 });
 
 app.use("*", serveStatic({ root: "./public" }));
