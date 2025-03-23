@@ -7,6 +7,9 @@ index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2
 diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-d4c2275d42fc02ed b/.bun-tag-d4c2275d42fc02ed
 new file mode 100644
 index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-f358569cbb395ac0 b/.bun-tag-f358569cbb395ac0
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/node_modules/@jsonresume/jsonresume-theme-professional/.bun-tag-fe6434c5af74f36e b/.bun-tag-fe6434c5af74f36e
 new file mode 100644
 index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
@@ -144,356 +147,152 @@ index cee2463fe103fd5b06d59d3a1ebe40a9d75ce613..c32d5a318c8bd794113536ba812b33e0
  
  export default Awards;
 diff --git a/src/ui/Certificates.js b/src/ui/Certificates.js
-index fe13413204be603ba6989e4bcce84255fdb4ced0..ab7527b0cf82d2da67393e052e97b6241322db0d 100644
+index fe13413204be603ba6989e4bcce84255fdb4ced0..8bf9e5125fe9ab87bf68f296e5521770b00bd623 100644
 --- a/src/ui/Certificates.js
 +++ b/src/ui/Certificates.js
-@@ -1,27 +1,28 @@
+@@ -1,14 +1,15 @@
 -import Section from './Section';
 -import Experience from './Experience';
 +import Section from "./Section";
 +import Experience from "./Experience";
  
 -const Certificates = ({ certificates }) => {
--  if (!certificates) {
--    return null;
--  }
 +const Certificates = ({ resume }) => {
-+	const { certificates } = resume;
-+	if (!certificates) {
-+		return null;
-+	}
++  const { certificates } = resume;
+   if (!certificates) {
+     return null;
+   }
  
--  return (
--    <div>
+   return (
+     <div>
 -      <Section title="Certificates">
--        {certificates.map((c, key) => {
--          return (
--            <Experience
--              title={c.name}
--              subTitle={c.issuer}
--              date={c.date}
--              key={key}
--            />
--          );
--        })}
--      </Section>
--    </div>
--  );
-+	return (
-+		<div>
-+			<Section title="Certificates">
-+				{certificates.map((c, key) => {
-+					return (
-+						<Experience
-+							title={c.name}
-+							subTitle={c.issuer}
-+							date={c.date}
-+							key={key}
-+						/>
-+					);
-+				})}
-+			</Section>
-+		</div>
-+	);
- };
++      <Section title="Certificados">
+         {certificates.map((c, key) => {
+           return (
+             <Experience
+diff --git a/src/ui/Date.js b/src/ui/Date.js
+index 1cfe25284944d81ccbecd23d61a1f173d2ba3691..61a50df071fda0d0f0cfe0d24592322aa9de2a11 100644
+--- a/src/ui/Date.js
++++ b/src/ui/Date.js
+@@ -13,7 +13,7 @@ const DateComponent = ({ date }) => {
+   const fullDate = new Date(date);
  
- export default Certificates;
+   const options = { year: 'numeric', month: 'long' };
+-  const formattedDate = fullDate.toLocaleDateString('en-US', options);
++  const formattedDate = fullDate.toLocaleDateString('es-ES', options);
+ 
+   return <Text>{formattedDate ?? 'Present'}</Text>;
+ };
 diff --git a/src/ui/Education.js b/src/ui/Education.js
-index 3c06212ec329be2448c2582f16d783b9225e91bd..ad5b067d83ea7fa21418a83954c3cce025f6dd55 100644
+index 3c06212ec329be2448c2582f16d783b9225e91bd..49421680b35b3bcff35233b00a5929b60d7764e7 100644
 --- a/src/ui/Education.js
 +++ b/src/ui/Education.js
-@@ -1,35 +1,36 @@
+@@ -1,16 +1,17 @@
 -import Section from './Section';
 -import Experience from './Experience';
 +import Section from "./Section";
 +import Experience from "./Experience";
  
 -const Education = ({ education }) => {
--  if (!education) {
--    return null;
--  }
 +const Education = ({ resume }) => {
-+	const { education } = resume;
-+	if (!education) {
-+		return null;
-+	}
++  const { education } = resume;
+   if (!education) {
+     return null;
+   }
  
--  return (
--    <div>
+   return (
+     <div>
 -      <Section title="Education">
--        {education.map((e, key) => {
++      <Section title="Educación">
+         {education.map((e, key) => {
 -          let subTitle = e.area ? `${e.studyType} in ${e.area}` : e.studyType;
-+	return (
-+		<div>
-+			<Section title="Education">
-+				{education.map((e, key) => {
-+					let subTitle = e.area ? `${e.studyType} in ${e.area}` : e.studyType;
++          let subTitle = e.area ? `${e.studyType} en ${e.area}` : e.studyType;
  
--          if (e.score) {
--            subTitle = `${subTitle} (${e.score})`;
--          }
-+					if (e.score) {
-+						subTitle = `${subTitle} (${e.score})`;
-+					}
- 
--          return (
--            <Experience
--              title={e.institution}
--              subTitle={subTitle}
--              startDate={e.startDate}
--              endDate={e.endDate}
--              highlights={e.courses}
--              key={key}
--            />
--          );
--        })}
--      </Section>
--    </div>
--  );
-+					return (
-+						<Experience
-+							title={e.institution}
-+							subTitle={subTitle}
-+							startDate={e.startDate}
-+							endDate={e.endDate}
-+							highlights={e.courses}
-+							key={key}
-+						/>
-+					);
-+				})}
-+			</Section>
-+		</div>
-+	);
- };
- 
- export default Education;
+           if (e.score) {
+             subTitle = `${subTitle} (${e.score})`;
 diff --git a/src/ui/Hero.js b/src/ui/Hero.js
-index 7fbe599886a67ae677a386c198388d6cc1918f03..68704d9cb76be0dae3dac5646cc3c09bce64b66d 100644
+index 7fbe599886a67ae677a386c198388d6cc1918f03..f45e4d1995192969a282493bc291fabc2f95ec4a 100644
 --- a/src/ui/Hero.js
 +++ b/src/ui/Hero.js
-@@ -1,14 +1,14 @@
+@@ -1,4 +1,4 @@
 -import styled from 'styled-components';
 +import styled from "styled-components";
  import {
--  FaMapPin,
--  FaEnvelope,
--  FaGithub,
--  FaTwitter,
--  FaPhoneAlt,
--  FaLink,
--  FaLinkedin,
+   FaMapPin,
+   FaEnvelope,
+@@ -7,8 +7,8 @@ import {
+   FaPhoneAlt,
+   FaLink,
+   FaLinkedin,
 -} from 'react-icons/fa';
 -import Section from './Section';
-+	FaMapPin,
-+	FaEnvelope,
-+	FaGithub,
-+	FaTwitter,
-+	FaPhoneAlt,
-+	FaLink,
-+	FaLinkedin,
 +} from "react-icons/fa";
 +import Section from "./Section";
  
  const Title = styled.div`
    font-size: 3rem;
-@@ -43,78 +43,78 @@ const Info = styled.div`
+@@ -43,17 +43,17 @@ const Info = styled.div`
    }
  `;
  
 -const HeroComponent = ({ basics }) => {
 -  const { name, url, location, profiles, phone, email } = basics;
 +const HeroComponent = ({ resume }) => {
-+	const { name, url, location, profiles, phone, email } = resume.basics;
++  const { name, url, location, profiles, phone, email } = resume.basics;
  
--  const linkedin = profiles.find(
+   const linkedin = profiles.find(
 -    ({ network }) => network.toLowerCase() === 'linkedin'
--  );
--  const github = profiles.find(
++    ({ network }) => network.toLowerCase() === "linkedin",
+   );
+   const github = profiles.find(
 -    ({ network }) => network.toLowerCase() === 'github'
--  );
--  const twitter = profiles.find(
++    ({ network }) => network.toLowerCase() === "github",
+   );
+   const twitter = profiles.find(
 -    ({ network }) => network.toLowerCase() === 'twitter'
--  );
-+	const linkedin = profiles.find(
-+		({ network }) => network.toLowerCase() === "linkedin",
-+	);
-+	const github = profiles.find(
-+		({ network }) => network.toLowerCase() === "github",
-+	);
-+	const twitter = profiles.find(
-+		({ network }) => network.toLowerCase() === "twitter",
-+	);
++    ({ network }) => network.toLowerCase() === "twitter",
+   );
  
--  return (
--    <Section>
--      <Title>{name}</Title>
--      <div className="secondary">
--        <BasicInfo>
--          {location && (
--            <Info>
--              <FaMapPin />
--              {location.city}, {location.countryCode}
--            </Info>
--          )}
--          {email && (
--            <Info>
--              <FaEnvelope />
--              {email}
--            </Info>
--          )}
--          {phone && (
--            <Info>
--              <FaPhoneAlt />
--              {phone}
--            </Info>
--          )}
--          {url && (
--            <Info>
--              <FaLink />
--              <a target="_blank" href={url}>
--                {url}
--              </a>
--            </Info>
--          )}
--          {linkedin && (
--            <Info>
--              <FaLinkedin />
+   return (
+@@ -90,7 +90,7 @@ const HeroComponent = ({ basics }) => {
+           {linkedin && (
+             <Info>
+               <FaLinkedin />
 -              <a href={`https://linkedin.com/in/${linkedin.username}`}>
--                {linkedin.username}
--              </a>
--            </Info>
--          )}
--          {github && (
--            <Info>
--              <FaGithub />
--              <a href={`https://github.com/${github.username}`}>
--                {github.username}
--              </a>
--            </Info>
--          )}
--          {twitter && (
--            <Info>
--              <FaTwitter />
--              <a href={`https://twitter.com/${twitter.username}`}>
--                {twitter.username}
--              </a>
--            </Info>
--          )}
--        </BasicInfo>
--      </div>
--    </Section>
--  );
-+	return (
-+		<Section>
-+			<Title>{name}</Title>
-+			<div className="secondary">
-+				<BasicInfo>
-+					{location && (
-+						<Info>
-+							<FaMapPin />
-+							{location.city}, {location.countryCode}
-+						</Info>
-+					)}
-+					{email && (
-+						<Info>
-+							<FaEnvelope />
-+							{email}
-+						</Info>
-+					)}
-+					{phone && (
-+						<Info>
-+							<FaPhoneAlt />
-+							{phone}
-+						</Info>
-+					)}
-+					{url && (
-+						<Info>
-+							<FaLink />
-+							<a target="_blank" href={url}>
-+								{url}
-+							</a>
-+						</Info>
-+					)}
-+					{linkedin && (
-+						<Info>
-+							<FaLinkedin />
-+							<a href={`https://linkedin.com/in/${linkedin.username}`}>
-+								{linkedin.username}
-+							</a>
-+						</Info>
-+					)}
-+					{github && (
-+						<Info>
-+							<FaGithub />
-+							<a href={`https://github.com/${github.username}`}>
-+								{github.username}
-+							</a>
-+						</Info>
-+					)}
-+					{twitter && (
-+						<Info>
-+							<FaTwitter />
-+							<a href={`https://twitter.com/${twitter.username}`}>
-+								{twitter.username}
-+							</a>
-+						</Info>
-+					)}
-+				</BasicInfo>
-+			</div>
-+		</Section>
-+	);
- };
- 
- export default HeroComponent;
++              <a href={linkedin.url}>
+                 {linkedin.username}
+               </a>
+             </Info>
 diff --git a/src/ui/Interests.js b/src/ui/Interests.js
-index 8cfbcef6e5ee435c5700b53a087cdcb638308c67..ba582d70854d66a72108c2ae0cf1958a73e46c0c 100644
+index 8cfbcef6e5ee435c5700b53a087cdcb638308c67..3f0f079a4ddf1e6608571aec616b3b49611bbc50 100644
 --- a/src/ui/Interests.js
 +++ b/src/ui/Interests.js
-@@ -1,22 +1,23 @@
+@@ -1,7 +1,8 @@
 -import OneLineList from './OneLineList';
 -import Section from './Section';
 +import OneLineList from "./OneLineList";
 +import Section from "./Section";
  
 -const Interests = ({ interests }) => {
--  // check if interests is null, empty, empty string or empty array
 +const Interests = ({ resume }) => {
-+	const { interests } = resume;
-+	// check if interests is null, empty, empty string or empty array
++  const { interests } = resume;
+   // check if interests is null, empty, empty string or empty array
  
--  if (!interests) {
--    return null;
--  }
-+	if (!interests) {
-+		return null;
-+	}
+   if (!interests) {
+@@ -10,7 +11,7 @@ const Interests = ({ interests }) => {
  
--  return (
--    <div>
+   return (
+     <div>
 -      <Section title="Interests">
--        {interests.map((w, key) => {
--          return <OneLineList key={key} name={w.name} items={w.keywords} />;
--        })}
--      </Section>
--    </div>
--  );
-+	return (
-+		<div>
-+			<Section title="Interests">
-+				{interests.map((w, key) => {
-+					return <OneLineList key={key} name={w.name} items={w.keywords} />;
-+				})}
-+			</Section>
-+		</div>
-+	);
- };
- 
- export default Interests;
++      <Section title="Intereses">
+         {interests.map((w, key) => {
+           return <OneLineList key={key} name={w.name} items={w.keywords} />;
+         })}
 diff --git a/src/ui/Languages.js b/src/ui/Languages.js
-index c5ed4aab0fb50e5a161b4af1cabddea7a2985148..b06be94be6edff9fccadde11beb9562f8f71d613 100644
+index c5ed4aab0fb50e5a161b4af1cabddea7a2985148..c56f19aa2afd045cbcaff4fb5d23267757d9a75e 100644
 --- a/src/ui/Languages.js
 +++ b/src/ui/Languages.js
-@@ -1,23 +1,24 @@
+@@ -1,15 +1,16 @@
 -import OneLineList from './OneLineList';
 +import OneLineList from "./OneLineList";
  
@@ -501,40 +300,19 @@ index c5ed4aab0fb50e5a161b4af1cabddea7a2985148..b06be94be6edff9fccadde11beb9562f
 +import Section from "./Section";
  
 -const Languages = ({ languages }) => {
--  if (!languages) {
--    return null;
--  }
 +const Languages = ({ resume }) => {
-+	const { languages } = resume;
-+	if (!languages) {
-+		return null;
-+	}
++  const { languages } = resume;
+   if (!languages) {
+     return null;
+   }
  
--  return (
--    <div>
+   return (
+     <div>
 -      <Section title="Languages">
--        {languages.map((l, key) => {
--          return (
--            <OneLineList key={key} name={l.language} items={[l.fluency]} />
--          );
--        })}
--      </Section>
--    </div>
--  );
-+	return (
-+		<div>
-+			<Section title="Languages">
-+				{languages.map((l, key) => {
-+					return (
-+						<OneLineList key={key} name={l.language} items={[l.fluency]} />
-+					);
-+				})}
-+			</Section>
-+		</div>
-+	);
- };
- 
- export default Languages;
++      <Section title="Idiomas">
+         {languages.map((l, key) => {
+           return (
+             <OneLineList key={key} name={l.language} items={[l.fluency]} />
 diff --git a/src/ui/OneLineList.js b/src/ui/OneLineList.js
 index d4668ce96dfbd0ef647aaabd59cfc547ab2af876..21d39707e92aed18b4d895232f1186bddc4cf5bb 100644
 --- a/src/ui/OneLineList.js
@@ -838,10 +616,10 @@ index 52981db67efec1552c08af85db3d6fcf7474ebe3..0e34ba441ae3aeb6672e04d4673327e8
  
    h2 {
 diff --git a/src/ui/Skills.js b/src/ui/Skills.js
-index 65c40eca800f2dd8b7d8046923d6fcc91eead81b..f6226d8018e925d5e17d8394f63b932f6b45291a 100644
+index 65c40eca800f2dd8b7d8046923d6fcc91eead81b..15e257537f32923077683cd18b1decce9775bb27 100644
 --- a/src/ui/Skills.js
 +++ b/src/ui/Skills.js
-@@ -1,21 +1,22 @@
+@@ -1,15 +1,16 @@
 -import OneLineList from './OneLineList';
 +import OneLineList from "./OneLineList";
  
@@ -849,36 +627,19 @@ index 65c40eca800f2dd8b7d8046923d6fcc91eead81b..f6226d8018e925d5e17d8394f63b932f
 +import Section from "./Section";
  
 -const Skills = ({ skills }) => {
--  if (!skills) {
--    return null;
--  }
 +const Skills = ({ resume }) => {
-+	const { skills } = resume;
-+	if (!skills) {
-+		return null;
-+	}
++  const { skills } = resume;
+   if (!skills) {
+     return null;
+   }
  
--  return (
--    <div>
+   return (
+     <div>
 -      <Section title="Skills">
--        {skills.map((w, key) => {
--          return <OneLineList key={key} name={w.name} items={w.keywords} />;
--        })}
--      </Section>
--    </div>
--  );
-+	return (
-+		<div>
-+			<Section title="Skills">
-+				{skills.map((w, key) => {
-+					return <OneLineList key={key} name={w.name} items={w.keywords} />;
-+				})}
-+			</Section>
-+		</div>
-+	);
- };
- 
- export default Skills;
++      <Section title="Habilidades">
+         {skills.map((w, key) => {
+           return <OneLineList key={key} name={w.name} items={w.keywords} />;
+         })}
 diff --git a/src/ui/Summary.js b/src/ui/Summary.js
 index 74175079fb78fd7c3dd8630cc34a3874e5f8e5b9..eae226f9f2e43e952ed149c57acb0169d6393be6 100644
 --- a/src/ui/Summary.js
@@ -975,63 +736,26 @@ index 81d6867e05cf0610465439c9cfec6fd55bb05e56..7ce4cc27edbe7e6d6d000f43c59f6c62
  
  export default Volunteer;
 diff --git a/src/ui/Work.js b/src/ui/Work.js
-index 1c2659eed1d1bf98682eb27798bf2e417fd8b742..f3669969e17b4ed7a89d4a189d8c19913ae6cd64 100644
+index 1c2659eed1d1bf98682eb27798bf2e417fd8b742..64ffa3bf8ff525bb4829f95fbc48bfd42424476b 100644
 --- a/src/ui/Work.js
 +++ b/src/ui/Work.js
-@@ -1,30 +1,31 @@
+@@ -1,14 +1,15 @@
 -import Section from './Section';
 -import Experience from './Experience';
 +import Section from "./Section";
 +import Experience from "./Experience";
  
 -const Work = ({ work }) => {
--  if (!work) {
--    return null;
--  }
 +const Work = ({ resume }) => {
-+	const { work } = resume;
-+	if (!work) {
-+		return null;
-+	}
++  const { work } = resume;
+   if (!work) {
+     return null;
+   }
  
--  return (
--    <div>
+   return (
+     <div>
 -      <Section title="Experience">
--        {work.map((w, key) => {
--          return (
--            <Experience
--              title={w.position}
--              subTitle={w.name}
--              startDate={w.startDate}
--              endDate={w.endDate}
--              summary={w.summary}
--              highlights={w.highlights}
--              key={key}
--            />
--          );
--        })}
--      </Section>
--    </div>
--  );
-+	return (
-+		<div>
-+			<Section title="Experience">
-+				{work.map((w, key) => {
-+					return (
-+						<Experience
-+							title={w.position}
-+							subTitle={w.name}
-+							startDate={w.startDate}
-+							endDate={w.endDate}
-+							summary={w.summary}
-+							highlights={w.highlights}
-+							key={key}
-+						/>
-+					);
-+				})}
-+			</Section>
-+		</div>
-+	);
- };
- 
- export default Work;
++      <Section title="Experiencia Laboral">
+         {work.map((w, key) => {
+           return (
+             <Experience

@@ -1,183 +1,127 @@
 {
-	"meta": {
-		"theme": "professional"
-	},
-	"basics": {
-		"name": "Diego Miguel Parra Nava",
-		"label": "Software Engineer",
-		"email": "diegoparranava@protonmail.com",
-		"phone": "(34)-665620606",
-		"url": "https://blog.diegoparra.dev/",
-		"summary": "Electrical engineering professional turned software developer with 3+ years of experience in TypeScript, Node.js, and Python, focusing on DevOps, cloud infrastructure, and backend systems. Google Cloud Professional Cloud Architect certified, with experience in CI/CD automation and developer productivity improvements.",
-		"location": {
-			"city": "Gijon",
-			"countryCode": "ES",
-			"region": "Spain"
-		},
-		"profiles": [
-			{
-				"network": "GitHub",
-				"username": "0bCdian",
-				"url": "https://github.com/0bCdian"
-			},
-			{
-				"network": "LinkedIn",
-				"username": "diegoparranava",
-				"url": "https://www.linkedin.com/in/diegoparranava"
-			}
-		]
-	},
-	"work": [
-		{
-			"company": "Agiliza",
-			"position": "Technical Consultant at Agiliza SA",
-			"startDate": "2023-09",
-			"endDate": "2023-12",
-			"highlights": [
-				"Redesigned backend architecture, migrating from Flask to Express.js (Node.js) to support a transition from a Flask templating system to a React + Express stack.",
-				"Optimized Python data extraction scripts, reducing execution time by over 70% (from 3+ minutes to 45 seconds).",
-				"Designed and implemented a relational database to store and process Trello board data, enabling structured data analysis.",
-				"Developed and integrated authentication and a role-based access system, securing user permissions across the web application.",
-				"Helped the frontend dev resolving integration issues, debugging and optimizing API communication."
-			]
-		}
-	],
-	"education": [
-		{
-			"institution": "Universidad del Zulia",
-			"area": "Electrical Engineering",
-			"studyType": "Bachelor",
-			"startDate": "2013-02",
-			"endDate": "2017-06",
-			"courses": [
-				"Calculus 1 through 4",
-				"Physics 1 through 3",
-				"Programming",
-				"Linear Algebra"
-			]
-		}
-	],
-	"certificates": [
-		{
-			"name": "Professional Cloud Architect",
-			"date": "2025-01",
-			"issuer": "Google",
-			"url": "https://www.credly.com/badges/d55110ec-00bd-4209-b8cc-2d1b2ebfe3ab/public_url"
-		},
-		{
-			"name": "DevOps para procesos ágiles",
-			"date": "2025-01",
-			"issuer": "Boolean Academia",
-			"url": "https://boolean.cl/certs/devops-ci-cd/g04/bea09c33718bfc8133b35cfb90307446/"
-		}
-	],
-	"skills": [
-		{
-			"name": "Programming Languages",
-			"keywords": ["TypeScript", "JavaScript", "Python", "Golang", "Bash"]
-		},
-		{
-			"name": "Databases",
-			"keywords": ["PostgreSQL", "SQLite", "MongoDB", "Firestore"]
-		},
-		{
-			"name": "Cloud/Infra",
-			"keywords": [
-				"GCP",
-				"GitHub Actions",
-				"Gitlab CI/CD",
-				"Docker",
-				"Kubernetes",
-				"Terraform"
-			]
-		},
-		{
-			"name": "Version Control",
-			"keywords": ["Git", "GitHub", "Gitlab"]
-		},
-		{
-			"name": "Frameworks",
-			"keywords": [
-				"Express",
-				"Electron",
-				"Hono",
-				"Flask",
-				"React",
-				"Astro",
-				"Tailwind"
-			]
-		},
-		{
-			"name": "Best Practices",
-			"keywords": [
-				"OOP",
-				"TDD",
-				"SOLID",
-				"REST",
-				"DDD",
-				"Hexagonal Architecture"
-			]
-		},
-		{
-			"name": "Soft Skills",
-			"keywords": [
-				"Problem-solving",
-				"Adaptability",
-				"Team-oriented",
-				"Critical Thinking",
-				"Great communicator"
-			]
-		}
-	],
-	"languages": [
-		{
-			"language": "Spanish",
-			"fluency": "Native"
-		},
-		{
-			"language": "English",
-			"fluency": "C2"
-		}
-	],
-	"projects": [
-		{
-			"name": "resumeJson",
-			"startDate": "2024-11",
-			"description": "A multi-component system for parsing resumes into JSON Resume schema with a focus on CI/CD and DevOps.",
-			"highlights": [
-				"Set up a CI/CD pipeline with GitHub Actions for Docker builds, testing, and deployments.",
-				"Automated testing with Vitest and NGINX-hosted reports stored in a GCP bucket.",
-				"Managed infrastructure using OpenTofu with automated planning and manual apply approvals.",
-				"Developed a React frontend for Google OAuth registration, API key management, and quota tracking.",
-				"Encapsulated core business logic in a shared lib package using hexagonal architecture."
-			],
-
-			"keywords": [
-				"DevOps",
-				"GitHub Actions",
-				"OpenTofu",
-				"Docker",
-				"NGINX",
-				"Vitest",
-				"TypeScript",
-				"Hono",
-				"React"
-			],
-			"url": "https://github.com/0bCdian/resumeJson"
-		},
-		{
-			"name": "Waypaper Engine",
-			"startDate": "2023-06",
-			"description": "Open-source wallpaper manager tool and setter for Linux, with external script support, custom playlists, and a fully-fledged CLI with 200+ stars on GitHub.",
-			"highlights": [
-				"Closed 20+ issues.",
-				"Added 15+ features since the first release.",
-				"Published in the Arch Linux User Repository.",
-				"Built with Electron, Nodejs, React, and Bash."
-			],
-			"keywords": ["Electron", "React", "Node.js", "SQLite", "Bash"],
-			"url": "https://github.com/0bCdian/Waypaper-Engine"
-		}
-	]
+  "metaTheme": "professional",
+  "basics": {
+    "name": "Alicia Díaz Puertas",
+    "label": "Peluquera Canina",
+    "email": "aliciadiazpuertas@protonmail.com",
+    "phone": "+34 633753227",
+    "website": "",
+    "summary": "Peluquera canina con formación en estética y cuidado animal, recién graduada de ágorAstur. Apasionada por el bienestar y la higiene de las mascotas, con experiencia en baños, secado, cortes de raza y mantenimiento estético. Hábil en el manejo de perros de diferentes temperamentos, asegurando una experiencia positiva y libre de estrés.",
+    "location": {
+      "city": "Gijón",
+      "countryCode": "ES",
+      "region": "Spain"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "Alicia Díaz Puertas",
+        "url": "https://www.linkedin.com/in/alicia-d%C3%ADaz-puertas/"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "PetFactory",
+      "jobLocation": "Gijón",
+      "position": "Peluquera canina",
+      "startDate": "2025-01",
+      "endDate": "2025-03",
+      "highlights": [
+        "Realicé baños completos y secado profesional adaptados a diferentes tipos de pelaje y necesidades específicas de cada perro.",
+        "Ejecuté cortes de pelo y mantenimiento estético según el estándar de raza y preferencias del propietario.",
+        "Manejé técnicas de cepillado y deslanado para mejorar la salud del pelaje y reducir la muda.",
+        "Apliqué cuidados de higiene esenciales, como limpieza de oídos, corte de uñas y desparasitación externa.",
+        "Aseguré el bienestar de los perros con un manejo cuidadoso y reducción del estrés durante los procedimientos.",
+        "Colaboré en la organización y mantenimiento de la peluquería, garantizando un espacio limpio y seguro."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Academia de Oposiciones y Cursos ágorAstur",
+      "schoolLocation": "Gijón, Asturias",
+      "area": "Peluquería y Estética Canina y Felina",
+      "studyType": "Curso",
+      "startDate": "2024-10",
+      "endDate": "2025-03",
+      "courses": [
+        "Formación en patologías dermatológicas, oculares y auditivas en perros, incluyendo identificación y cuidados básicos.",
+        "Conocimiento sobre la distribución y organización habitual de una peluquería canina para una gestión eficiente.",
+        "Estudio de la anatomía básica canina, enfocada en su aplicación en el cuidado y la estética.",
+        "Aprendizaje de técnicas de peluquería canina, incluyendo cortes de raza, deslanado y stripping.",
+        "Formación en higiene y mantenimiento canino, abarcando el baño, secado, desparasitación y cuidado del pelaje."
+      ]
+    },
+    {
+      "institution": "Universidad Pompeu Fabra",
+      "schoolLocation": "Barcelona, Cataluña",
+      "area": "Traducción e Interpretación",
+      "studyType": "Grado",
+      "startDate": "2016-09",
+      "endDate": "2022-06"
+    },
+    {
+      "institution": "Universidad Pompeu Fabra",
+      "schoolLocation": "Barcelona, Cataluña",
+      "area": "Lenguas Aplicadas",
+      "studyType": "Grado",
+      "startDate": "2016-09",
+      "endDate": "2022-06"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Blandas",
+      "keywords": [
+        "Comunicación",
+        "Proactividad",
+        "Trabajo en equipo",
+        "Responsabilidad",
+        "Aprendizaje continuo",
+        "Disciplina",
+        "Adaptabilidad"
+      ]
+    },
+    {
+      "name": "Técnicas",
+      "keywords": [
+        "Cortes de cabello canino",
+        "Bañado y secado",
+        "Corte de uñas de mascotas",
+        "Perfilado",
+        "Limpieza de orejas",
+        "Limpieza dental",
+        "Limpieza ocular",
+        "Cepillado",
+        "Estiramiento de pelo"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Español",
+      "fluency": "Nativo"
+    },
+    {
+      "language": "Inglés",
+      "fluency": "Experto"
+    },
+    {
+      "language": "Catalán",
+      "fluency": "Intermedio"
+    },
+    {
+      "language": "Francés",
+      "fluency": "Principiante"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Capacitación de cuidados de animales de compañía",
+      "date": "2024-11",
+      "issuer": "Gobierno del Principado de Asturias"
+    }
+  ],
+  "projects": []
 }
-
