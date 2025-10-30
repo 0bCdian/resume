@@ -1,183 +1,229 @@
 {
-	"meta": {
-		"theme": "professional"
-	},
-	"basics": {
-		"name": "Diego Miguel Parra Nava",
-		"label": "Software Engineer",
-		"email": "diegoparranava@protonmail.com",
-		"phone": "(34)-665620606",
-		"url": "https://blog.diegoparra.dev/",
-		"summary": "Electrical engineering professional turned software developer with 3+ years of experience in TypeScript, Node.js, and Python, focusing on DevOps, cloud infrastructure, and backend systems. Google Cloud Professional Cloud Architect certified, with experience in CI/CD automation and developer productivity improvements.",
-		"location": {
-			"city": "Gijon",
-			"countryCode": "ES",
-			"region": "Spain"
-		},
-		"profiles": [
-			{
-				"network": "GitHub",
-				"username": "0bCdian",
-				"url": "https://github.com/0bCdian"
-			},
-			{
-				"network": "LinkedIn",
-				"username": "diegoparranava",
-				"url": "https://www.linkedin.com/in/diegoparranava"
-			}
-		]
-	},
-	"work": [
-		{
-			"company": "Agiliza",
-			"position": "Technical Consultant at Agiliza SA",
-			"startDate": "2023-09",
-			"endDate": "2023-12",
-			"highlights": [
-				"Redesigned backend architecture, migrating from Flask to Express.js (Node.js) to support a transition from a Flask templating system to a React + Express stack.",
-				"Optimized Python data extraction scripts, reducing execution time by over 70% (from 3+ minutes to 45 seconds).",
-				"Designed and implemented a relational database to store and process Trello board data, enabling structured data analysis.",
-				"Developed and integrated authentication and a role-based access system, securing user permissions across the web application.",
-				"Helped the frontend dev resolving integration issues, debugging and optimizing API communication."
-			]
-		}
-	],
-	"education": [
-		{
-			"institution": "Universidad del Zulia",
-			"area": "Electrical Engineering",
-			"studyType": "Bachelor",
-			"startDate": "2013-02",
-			"endDate": "2017-06",
-			"courses": [
-				"Calculus 1 through 4",
-				"Physics 1 through 3",
-				"Programming",
-				"Linear Algebra"
-			]
-		}
-	],
-	"certificates": [
-		{
-			"name": "Professional Cloud Architect",
-			"date": "2025-01",
-			"issuer": "Google",
-			"url": "https://www.credly.com/badges/d55110ec-00bd-4209-b8cc-2d1b2ebfe3ab/public_url"
-		},
-		{
-			"name": "DevOps para procesos ágiles",
-			"date": "2025-01",
-			"issuer": "Boolean Academia",
-			"url": "https://boolean.cl/certs/devops-ci-cd/g04/bea09c33718bfc8133b35cfb90307446/"
-		}
-	],
-	"skills": [
-		{
-			"name": "Programming Languages",
-			"keywords": ["TypeScript", "JavaScript", "Python", "Golang", "Bash"]
-		},
-		{
-			"name": "Databases",
-			"keywords": ["PostgreSQL", "SQLite", "MongoDB", "Firestore"]
-		},
-		{
-			"name": "Cloud/Infra",
-			"keywords": [
-				"GCP",
-				"GitHub Actions",
-				"Gitlab CI/CD",
-				"Docker",
-				"Kubernetes",
-				"Terraform"
-			]
-		},
-		{
-			"name": "Version Control",
-			"keywords": ["Git", "GitHub", "Gitlab"]
-		},
-		{
-			"name": "Frameworks",
-			"keywords": [
-				"Express",
-				"Electron",
-				"Hono",
-				"Flask",
-				"React",
-				"Astro",
-				"Tailwind"
-			]
-		},
-		{
-			"name": "Best Practices",
-			"keywords": [
-				"OOP",
-				"TDD",
-				"SOLID",
-				"REST",
-				"DDD",
-				"Hexagonal Architecture"
-			]
-		},
-		{
-			"name": "Soft Skills",
-			"keywords": [
-				"Problem-solving",
-				"Adaptability",
-				"Team-oriented",
-				"Critical Thinking",
-				"Great communicator"
-			]
-		}
-	],
-	"languages": [
-		{
-			"language": "Spanish",
-			"fluency": "Native"
-		},
-		{
-			"language": "English",
-			"fluency": "C2"
-		}
-	],
-	"projects": [
-		{
-			"name": "resumeJson",
-			"startDate": "2024-11",
-			"description": "A multi-component system for parsing resumes into JSON Resume schema with a focus on CI/CD and DevOps.",
-			"highlights": [
-				"Set up a CI/CD pipeline with GitHub Actions for Docker builds, testing, and deployments.",
-				"Automated testing with Vitest and NGINX-hosted reports stored in a GCP bucket.",
-				"Managed infrastructure using OpenTofu with automated planning and manual apply approvals.",
-				"Developed a React frontend for Google OAuth registration, API key management, and quota tracking.",
-				"Encapsulated core business logic in a shared lib package using hexagonal architecture."
-			],
-
-			"keywords": [
-				"DevOps",
-				"GitHub Actions",
-				"OpenTofu",
-				"Docker",
-				"NGINX",
-				"Vitest",
-				"TypeScript",
-				"Hono",
-				"React"
-			],
-			"url": "https://github.com/0bCdian/resumeJson"
-		},
-		{
-			"name": "Waypaper Engine",
-			"startDate": "2023-06",
-			"description": "Open-source wallpaper manager tool and setter for Linux, with external script support, custom playlists, and a fully-fledged CLI with 200+ stars on GitHub.",
-			"highlights": [
-				"Closed 20+ issues.",
-				"Added 15+ features since the first release.",
-				"Published in the Arch Linux User Repository.",
-				"Built with Electron, Nodejs, React, and Bash."
-			],
-			"keywords": ["Electron", "React", "Node.js", "SQLite", "Bash"],
-			"url": "https://github.com/0bCdian/Waypaper-Engine"
-		}
-	]
+  "meta": {
+    "theme": "professional"
+  },
+  "basics": {
+    "name": "Diego Miguel Parra Nava",
+    "label": "DevOps & Infrastructure Engineer",
+    "email": "diegoparranava@protonmail.com",
+    "phone": "(34)-665620606",
+    "url": "https://blog.diegoparra.dev/",
+    "summary": "A results-driven DevOps and Software Engineer with 3+ years of experience and a background in electrical engineering. Proven expertise in designing, building, and maintaining scalable and reliable infrastructure on GCP. Google Cloud Professional Cloud Architect with a passion for automation, CI/CD, and improving developer productivity.",
+    "location": {
+      "city": "Gijon",
+      "countryCode": "ES",
+      "region": "Spain"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "0bCdian",
+        "url": "https://github.com/0bCdian"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "diegoparranava-backend-devops-engineer",
+        "url": "www.linkedin.com/in/diegoparranava-backend-devops-engineer"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "Devoteam",
+      "position": "DevOps Engineer - Devoteam",
+      "startDate": "2025-03",
+      "highlights": [
+        "Led critical migration tasks (AWS to GCP), including creating Packer images for VMs with Ansible, deploying Kafka clusters, and managing MongoDB replication.",
+        "Engineered and deployed infrastructure using Terraform, while managing Kubernetes deployments with ArgoCD.",
+        "Developed and maintained monitoring and alerting systems with Grafana, Prometheus, and Victoriametrics.",
+        "Authored and executed disaster recovery plans, successfully mitigating a critical production issue over a weekend.",
+        "Entrusted with project management responsibilities, overseeing operations independently during key periods.",
+        "Successfully helped resolve complex kubernetes deployment issues when porting EKS workloads to GKE.",
+        "Assisted with modernization efforts for a critical migration project by implementing infrastructure-as-code (IaC) and CI/CD best practices.",
+        "Significantly improved developer experience by automating release processes and optimizing CI/CD pipelines for faster, more reliable deployments."
+      ]
+    },
+    {
+      "company": "Agiliza",
+      "position": "Technical Consultant - Agiliza SA",
+      "startDate": "2023-09",
+      "endDate": "2023-12",
+      "highlights": [
+        "Redesigned backend architecture, migrating from Flask to Express.js (Node.js) to support a transition from a Flask templating system to a React + Express stack.",
+        "Optimized Python data extraction scripts, reducing execution time by over 70% (from 3+ minutes to 45 seconds).",
+        "Designed and implemented a relational database to store and process Trello board data, enabling structured data analysis.",
+        "Developed and integrated authentication and a role-based access system, securing user permissions across the web application.",
+        "Helped the frontend dev resolving integration issues, debugging and optimizing API communication."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad del Zulia",
+      "area": "Electrical Engineering",
+      "studyType": "Bachelor",
+      "startDate": "2013-02",
+      "endDate": "2017-06",
+      "courses": [
+        "Calculus 1 through 4",
+        "Physics 1 through 3",
+        "Programming",
+        "Linear Algebra"
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Professional Cloud Architect",
+      "date": "2025-01",
+      "issuer": "Google",
+      "url": "https://www.credly.com/badges/d55110ec-00bd-4209-b8cc-2d1b2ebfe3ab/public_url"
+    },
+    {
+      "name": "DevOps para procesos ágiles",
+      "date": "2025-01",
+      "issuer": "Boolean Academia",
+      "url": "https://boolean.cl/certs/devops-ci-cd/g04/bea09c33718bfc8133b35cfb90307446/"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming Languages",
+      "keywords": [
+        "TypeScript",
+        "JavaScript",
+        "Python",
+        "Golang",
+        "Bash"
+      ]
+    },
+    {
+      "name": "Databases",
+      "keywords": [
+        "PostgreSQL",
+        "SQLite",
+        "MongoDB",
+        "Firestore",
+        "Kafka"
+      ]
+    },
+    {
+      "name": "Infra",
+      "keywords": [
+        "GCP",
+        "AWS",
+        "GitHub Actions",
+        "Gitlab CI/CD",
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Packer",
+        "ArgoCD",
+        "Victoriametrics",
+        "Helm",
+        "Kustomize",
+        "Jenkins",
+        "Prometheus",
+        "Grafana"
+      ]
+    },
+    {
+      "name": "Version Control",
+      "keywords": [
+        "Git",
+        "GitHub",
+        "Gitlab",
+        "Bitbucket"
+      ]
+    },
+    {
+      "name": "Frameworks",
+      "keywords": [
+        "Express",
+        "Electron",
+        "Hono",
+        "Flask",
+        "React",
+        "Astro",
+        "Tailwind"
+      ]
+    },
+    {
+      "name": "Best Practices",
+      "keywords": [
+        "OOP",
+        "TDD",
+        "SOLID",
+        "REST",
+        "DDD",
+        "Hexagonal Architecture"
+      ]
+    },
+    {
+      "name": "Soft Skills",
+      "keywords": [
+        "Problem-solving",
+        "Adaptability",
+        "Team-oriented",
+        "Critical Thinking",
+        "Great communicator"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Spanish",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "C2"
+    }
+  ],
+  "projects": [
+    {
+      "name": "resumeJson",
+      "startDate": "2024-11",
+      "description": "A multi-component system for parsing resumes into JSON Resume schema with a focus on CI/CD and DevOps.",
+      "highlights": [
+        "Set up a CI/CD pipeline with GitHub Actions for Docker builds, testing, and deployments.",
+        "Automated testing with Vitest and NGINX-hosted reports stored in a GCP bucket.",
+        "Managed infrastructure using OpenTofu with automated planning and manual apply approvals.",
+        "Developed a React frontend for Google OAuth registration, API key management, and quota tracking.",
+        "Encapsulated core business logic in a shared lib package using hexagonal architecture."
+      ],
+      "keywords": [
+        "DevOps",
+        "GitHub Actions",
+        "OpenTofu",
+        "Docker",
+        "NGINX",
+        "Vitest",
+        "TypeScript",
+        "Hono",
+        "React"
+      ],
+      "url": "https://github.com/0bCdian/resumeJson"
+    },
+    {
+      "name": "Waypaper Engine",
+      "startDate": "2023-06",
+      "description": "Open-source wallpaper manager tool and setter for Linux, with external script support, custom playlists, and a fully-fledged CLI with 200+ stars on GitHub.",
+      "highlights": [
+        "Closed 20+ issues.",
+        "Added 15+ features since the first release.",
+        "Published in the Arch Linux User Repository.",
+        "Built with Electron, Nodejs, React, and Bash."
+      ],
+      "keywords": [
+        "Electron",
+        "React",
+        "Node.js",
+        "SQLite",
+        "Bash"
+      ],
+      "url": "https://github.com/0bCdian/Waypaper-Engine"
+    }
+  ]
 }
-
